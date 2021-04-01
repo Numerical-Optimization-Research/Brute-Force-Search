@@ -39,20 +39,11 @@ output_files = create_output_files(destinationfolder,10);
 batt_num = 10;
 status = batt_gen_out(batt_num,batteryfolder,input_feb,'_feb');
 
-if status == -1
-    return;
-else
-    pause(5);
-end
+wh
 
-status = batt_gen_out(batt_num,batteryfolder,input_jul,'_jul');
+batt_gen_out(batt_num,batteryfolder,input_jul,'_jul');
 
 
-if status == -1
-    return;
-else
-    pause(5);
-end
 
 %% Variables
 global Ceol a  b c d e kT Tref kSoC socRef kt delta_t socMax ...
