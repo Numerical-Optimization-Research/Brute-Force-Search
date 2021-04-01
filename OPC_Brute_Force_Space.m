@@ -6,6 +6,7 @@ clear all;
 close all;
 clc
 
+
 %% Path
 compPath = pwd;
 libpath = strcat(pwd,'\lib');
@@ -14,6 +15,7 @@ addpath(libpath);
 % Input/Output Paths
 sourcefolder = strcat(pwd,'\input');
 destinationfolder = strcat(pwd,'\output');
+batteryfolder = strcat(pwd,'\batt_model_data');
 
 % Added this in case there are intial problems running this problem on
 % other OS. As there is sometimes a syntax change.
@@ -31,6 +33,13 @@ input_jul = table2array(readtable(strcat(input_content(2).folder,'\',input_conte
 
 % Open file in order to write outputs out here.
 output_files = create_output_files(destinationfolder,10);
+
+%% Generate the Battery Information
+
+batt_num = 10;
+batt_gen_out(batt_num,batteryfolder,input_feb,'_feb');
+batt_gen_out(batt_num,batteryfolder,input_jul,'_jul');
+
 
 
 %% Variables
@@ -71,7 +80,7 @@ x(2) = 1;     % Temp
 x(3) = socMin + 0.45;    % SoC
 x(3) = enforceBCSOC(x(3));
 x_temp = x;
-1x_in = x;
+x_in = x;
 x_opt = zeros(3,time_max);
 cost_opt = zeros(1,time_max);
 check = true;
@@ -482,7 +491,6 @@ function index = IOP(p,v,N)
     end
     
 end
-
 
 
 %% Edits
